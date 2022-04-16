@@ -35,11 +35,12 @@
     <form>
         <label for='url'>URL:</label>
         <input id='url' type='url' required>
+    </form>
         <template be-switched='{
             "if": {
-                "observe": "input",
+                "observe": "form",
                 "on": "input",
-                "vft": "checkValidity|"
+                "vft": "querySelector|input.checkValidity|"
             }
         }'>
             <xtal-editor></xtal-editor>
@@ -47,7 +48,6 @@
                 import 'https://esm.run/xtal-editor@0.0.162';
             </script>
         </template>
-    </form>
     <script type=module crossorigin='anonymous'>
         import 'https://esm.run/be-switched@0.0.68';
     </script>
