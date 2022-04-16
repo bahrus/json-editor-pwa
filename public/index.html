@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
     <title>JSON Editor</title>
-    <script>
+    <script type='module'>
         const registerServiceWorker = async () => {
             if ('serviceWorker' in navigator) {
                 try {
@@ -31,19 +31,15 @@
         registerServiceWorker();
     </script>
     <style>
-        /* @media (prefers-color-scheme: dark) {
-            body {
-                color-scheme: dark;
-            }
-        } */
         @import "https://unpkg.com/open-props";
         @import "https://unpkg.com/open-props/normalize.min.css";
     </style>
 </head>
 <body>
+    <h1 style='text-align:center'>JSON Editor</h1>
     <form>
         <label for='url'>URL:</label>
-        <input id='url' type='url' required>
+        <input id='url' type='url' required size='100'>
     </form>
     <template be-switched='{
         "if": {
@@ -66,7 +62,7 @@
             "as": "json"
         }'
         target='xtal-editor[-input-obj]'></form>
-        <xtal-editor -input-obj></xtal-editor>
+        <xtal-editor -input-obj style='height:calc(100vh - 400px)'></xtal-editor>
         <script type='module' crossorigin='anonymous'>
             import 'https://esm.run/xtal-editor@0.0.162';
             import 'https://esm.run/be-reformable@0.0.39';
