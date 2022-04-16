@@ -33,15 +33,21 @@
 </head>
 <body>
     <form>
-        <label>URL:
-            <input type='url' required>
-        </label>
-        <template be-switched='{}'>
+        <label for='url'>URL:</label>
+        <input id='url' type='url' required>
+        <template be-switched='{
+            "if": {
+                "observeClosest": "input",
+                "on": "input",
+                "vft": "checkValidity|"
+            }
+        }'>
             <xtal-editor></xtal-editor>
         </template>
     </form>
     <script type=module crossorigin>
         import 'https://esm.run/xtal-editor@0.0.162';
+        import 'https://esm.run/be-switched@0.0.68';
     </script>
 </body>
 </html>
