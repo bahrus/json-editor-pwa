@@ -35,12 +35,14 @@
         @import "https://unpkg.com/open-props/normalize.min.css";
     </style>
 </head>
-<body>
+<body style='margin:3px;overflow:hidden'>
     <h1 style='text-align:center'>JSON Editor</h1>
     <form>
         <label for='url'>URL:</label>
         <input id='url' type='url' required size='100'>
     </form>
+    <p>&nbsp;</p>
+
     <template be-switched='{
         "if": {
             "observe": "form",
@@ -62,9 +64,9 @@
             "as": "json"
         }'
         target='xtal-editor[-input-obj]'></form>
-        <xtal-editor -input-obj style='height:calc(100vh - 110px)'></xtal-editor>
+        <xtal-editor -input-obj style='height:calc(100vh - 100px)'></xtal-editor>
         <script type='module' crossorigin='anonymous'>
-            import 'https://esm.run/xtal-editor@0.0.163';
+            import 'https://esm.run/xtal-editor@0.0.164';
             import 'https://esm.run/be-reformable@0.0.39';
         </script>
     </template>
