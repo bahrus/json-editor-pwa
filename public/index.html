@@ -30,36 +30,45 @@
         };
         registerServiceWorker();
     </script>
+    <style>
+        /* @media (prefers-color-scheme: dark) {
+            body {
+                color-scheme: dark;
+            }
+        } */
+        @import "https://unpkg.com/open-props";
+        @import "https://unpkg.com/open-props/normalize.min.css";
+        @import "https://unpkg.com/open-props/buttons.min.css";
+    </style>
 </head>
 <body>
     <form>
         <label for='url'>URL:</label>
         <input id='url' type='url' required>
     </form>
-        <template be-switched='{
-            "if": {
+    <template be-switched='{
+        "if": {
+            "observe": "form",
+            "on": "input",
+            "vft": "querySelector|input.checkValidity|"
+        }
+    }'>
+        <form be-reformable='{
+            "autoSubmit": true,
+            "url": {
                 "observe": "form",
                 "on": "input",
-                "vft": "querySelector|input.checkValidity|"
-            }
-        }'>
-            <form be-reformable='{
-                "autoSubmit": true,
-                "url": {
-                    "observe": "form",
-                    "on": "input",
-                    "vft": "querySelector|input.value"
-                },
-                "as": "json"
-            }'
-            target='xtal-editor[-input-obj]'></form>
-            <xtal-editor -input-obj></xtal-editor>
-            <script type='module' crossorigin='anonymous'>
-                import 'https://esm.run/xtal-editor@0.0.162';
-                import 'https://esm.run/be-observant@0.0.121';
-                import 'https://esm.run/be-reformable@0.0.39';
-            </script>
-        </template>
+                "vft": "querySelector|input.value"
+            },
+            "as": "json"
+        }'
+        target='xtal-editor[-input-obj]'></form>
+        <xtal-editor -input-obj></xtal-editor>
+        <script type='module' crossorigin='anonymous'>
+            import 'https://esm.run/xtal-editor@0.0.162';
+            import 'https://esm.run/be-reformable@0.0.39';
+        </script>
+    </template>
     <script type=module crossorigin='anonymous'>
         import 'https://esm.run/be-switched@0.0.68';
     </script>
