@@ -4,7 +4,7 @@ const sw = self as any as ServiceWorkerGlobalScope;
 
 sw.addEventListener('fetch', event => {
     const url = event.request.url;
-    //console.log(url);
+    console.log(url);
     if (event.request.url.indexOf('@') > -1) {
         caches.match(event.request).then(response => {
             if(!response) {

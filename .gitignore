@@ -1,2 +1,3 @@
 dist
 /public/.well-known/assetlinks.json
+/node_modules
