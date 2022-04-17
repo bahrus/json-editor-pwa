@@ -1,18 +1,18 @@
 const npm_cache = 'npm-cache';
 
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil((async () => {
-    // Enable navigation preload if it's supported.
-    // See https://developers.google.com/web/updates/2017/02/navigation-preload
-    if ('navigationPreload' in self.registration) {
-      await self.registration.navigationPreload.enable();
-    }
-  })());
+// self.addEventListener('activate', (event) => {
+//   event.waitUntil((async () => {
+//     // Enable navigation preload if it's supported.
+//     // See https://developers.google.com/web/updates/2017/02/navigation-preload
+//     if ('navigationPreload' in self.registration) {
+//       await self.registration.navigationPreload.enable();
+//     }
+//   })());
 
-  // Tell the active service worker to take control of the page immediately.
-  self.clients.claim();
-});
+//   // Tell the active service worker to take control of the page immediately.
+//   self.clients.claim();
+// });
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.open(npm_cache).then(function(cache) {
