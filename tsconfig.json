@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"sourceMap": false,
+		"experimentalDecorators": false,
+		"lib": ["es2019", "es6", "dom", "webworker"],
+		"newLine": "LF",
+		"watch": true,
+		"strict": true,
+	},
+	"files":[
+		"public/sw.ts"
+	],
+	"exclude":[
+		"build",
+		"bower_components",
+		"node_modules"
+	]
+
+}
