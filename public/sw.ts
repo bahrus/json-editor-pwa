@@ -7,25 +7,25 @@ sw.addEventListener('fetch', event => {
         caches.match(event.request).then(response => {
             if(!response) {
                 console.log({url: event.request.url, fn: 'fetch1'});
-                event.respondWith(
+                //event.respondWith(
                     caches.open(npm_cache).then(function (cache) {
                         return fetch(event.request).then(function (response) {
                             cache.put(event.request, response.clone());
                             return response;
                         });
                     })
-                );
+                //);
             }
         });
     }else{
-        event.respondWith(
+        //event.respondWith(
             caches.open(npm_cache).then(function (cache) {
                 return fetch(event.request).then(function (response) {
                     cache.put(event.request, response.clone());
                     return response;
                 });
             })
-        );
+        //);
     }   
 });
 
