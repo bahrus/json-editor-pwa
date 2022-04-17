@@ -33,7 +33,7 @@ sw.addEventListener('fetch', event => {
     //console.log(url);
     if(url.startsWith('https://esm.run') && url.endsWith('+esm')){
         const newUrl = url.replace('https://esm.run/', 'https://cdn.jsdelivr.net/');
-        event.respondWith(fetch(newUrl));
+        event.respondWith(Response.redirect(newUrl, 302));
     }else{
         event.respondWith(
             caches.match(event.request).then(function (response) {
