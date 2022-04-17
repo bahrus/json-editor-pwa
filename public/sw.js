@@ -3,7 +3,9 @@ const npm_cache = 'npm-cache';
 const sw = self;
 sw.addEventListener('fetch', event => {
     const url = event.request.url;
-    console.log(url);
+    if (url.startsWith('https://esm.run') && url.endsWith('+esm')) {
+        return;
+    }
     if (event.request.url.indexOf('@') > -1) {
         caches.match(event.request).then(response => {
             if (!response) {
@@ -27,7 +29,6 @@ sw.addEventListener('fetch', event => {
 });
 sw.addEventListener('fetch', event => {
     const url = event.request.url;
-    //console.log(url);
     if (url.startsWith('https://esm.run') && url.endsWith('+esm')) {
         const newUrl = url.replace('https://esm.run/', 'https://cdn.jsdelivr.net/');
         event.respondWith(Response.redirect(newUrl, 302));
