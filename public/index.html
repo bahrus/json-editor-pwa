@@ -29,13 +29,105 @@
         @import "https://unpkg.com/open-props@1.3.16";
         @import "https://unpkg.com/open-props@1.3.16/normalize.min.css";
     </style>
+    <style>
+        spicy-sections {
+            /* Big hand-wave over how we'd ultimately express this, but for this custom element, this is how you inform when you'd like to emply which affodances 'collapse', 'tab-bar' and 'exclusive-collapse' are the available affordances.  Anything else is, effectively "plain" or "none". It is only read once.
+            */
+            --const-mq-affordances: [screen and (max-width: 40em) ] collapse | [screen and
+            (min-width: 60em) ] tab-bar;
+        display: block;
+        border: thick var(--demo-border, solid black);
+        border-width: thick 0;
+        padding: 1em;
+        }
+
+            /* just normal css/dom any heading works */
+            h2 {
+            font-size: var(--heading-size, 1.2em);
+            margin: 0;
+            }
+
+            /* you can tell there are none employed */
+            h2:not([affordance] *) {
+            margin-bottom: 0.5em;
+            }
+
+            /* content panels when plain */
+            h2:not([affordance] *):not(:first-child) {
+            margin-top: 1.5em;
+            }
+
+            /* content panels, always */
+            spicy-sections h2 + * {
+            margin-top: 0;
+            }
+
+            /* accordion buttons */
+            [affordance="collapse"] {
+            --heading-size: 1em;
+            --demo-border: dotted tomato;
+            }
+
+            /* structured content */
+            spicy-sections:not([affordance]) {
+            --demo-border: dashed teal;
+            }
+
+            /* tabs */
+            [affordance="tab-bar"] {
+            --demo-border: solid mediumvioletred;
+            }
+
+            /* the pseudo element created around the tabs, when it exists */
+            ::part(tab-list) {
+            display: flex;
+            }
+
+            /* only when they're tabs */
+            [affordance="tab-bar"] h2 {
+            padding: 0.125em 0.5em;
+            cursor: pointer;
+            }
+
+            /* Only when they're tabs and selected */
+            [affordance="tab-bar"] h2[tabindex="0"] {
+                /* background: papayawhip; */
+            border: 0;
+            }
+
+            /* Tabs that aren't selected */
+            [affordance="tab-bar"] h2:not([tabindex="0"]) {
+            color: gray;
+            }
+
+            /* content, when it's tabs */
+            [affordance="tab-bar"] [role="tabpanel"] {
+                /* background: papayawhip; */
+                padding: 1em;
+            }
+
+    </style>
 </head>
 <body style='margin:3px;overflow:hidden'>
     <h1 style='text-align:center'>JSON Editor</h1>
     <form>
-        <label for='url'>URL:</label>
-        <input  onClick="this.select();" id='url' type='url' required style='width:calc(100vw - 50px)' be-persistent>
+        <spicy-sections>
+            <h2>Select URL</h2>
+            <div>
+                <label for='url'>URL:</label>
+                <input  onClick="this.select();" id='url' type='url' required style='width:calc(100vw - 50px)' be-persistent>
+            </div>
+            <h2>Select File</h2>
+            <div>
+                <label for='file'>File:</label>
+                <input id='file' type='file' required style='width:calc(100vw - 50px)'>
+            </div>
+        </spicy-sections>
     </form>
+
+    
+        
+
     <p>&nbsp;</p>
 
     <template be-switched='{
@@ -69,5 +161,6 @@
         import 'https://esm.run/be-switched@0.0.68';
         import "https://esm.run/be-persistent@0.0.16"
     </script>
+    <script type="module" src="https://spicy-sections.glitch.me/SpicySections.js"></script>
 </body>
 </html>
