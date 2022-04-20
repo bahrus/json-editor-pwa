@@ -64,38 +64,41 @@
 </head>
 <body style='margin:3px;overflow:hidden'>
     <h1 style='text-align:center'>JSON Editor</h1>
-    <form class='data-selector'>
+    <form class='data-selector' be-formidable='{
+        "invalidIf":{
+            "noneOf": ["url", "file"]
+        }
+    }'>
         <oui-panelset>
             <h2>Select URL</h2>
             <div>
                 <label for='url'>URL:</label>
-                <input be-observant='{
-                    "required":{
-                        "observeClosest": "oui-panelset",
-                        "on": "toggle",
-                        "vft": "getPanels|.0.open"
-                    }
-                }' onClick="this.select();" id='url' type='url' required style='width:calc(100vw - 50px)' be-persistent>
+                <input onClick="this.select();" id='url' name='url' type='url' style='width:calc(100vw - 50px)' be-persistent>
             </div>
             <h2>Select File</h2>
             <div>
-                <template be-intersectional>
+                
                     <label for='file'>File:</label>
-                    <input be-observant='{
-                        "required":{
-                            "observeClosest": "oui-panelset",
-                            "on": "toggle",
-                            "vft": "getPanels|.1.open"
-                        }
-                    }' id='file' type='file' style='width:calc(100vw - 50px)' be-literate>
+                    <input id='file' name='file' type='file' style='width:calc(100vw - 50px)' be-literate>
                     <script type='module'>
-                        import "https://esm.run/be-literate@0.0.1";
+                        
                     </script>
-                </template>
+                
             </div>
         </oui-panelset>
     </form>
-
+    <script type=module crossorigin='anonymous'>
+        import 'https://esm.run/be-persistent@0.0.16';
+        import 'https://tabvengers.github.io/spicy-sections/register.js';
+        import 'https://esm.run/be-literate@0.0.1';
+        async function loadSeq(){
+            //need form validation to occur first before evaluating be-switched
+            await import('https://esm.run/be-formidable@0.0.1');
+            await import('https://esm.run/be-switched@0.0.68');
+        }
+        loadSeq();
+    </script>
+    <script type="module" src="https://spicy-sections.glitch.me/SpicySections.js"></script>
     
         
 
@@ -109,7 +112,6 @@
         }
     }'>
         <style>
-            
             @import "https://unpkg.com/open-props/buttons.min.css";
         </style>
         <form be-reformable='{
@@ -138,13 +140,6 @@
             
         </script>
     </template>
-    <script type=module crossorigin='anonymous'>
-        import 'https://esm.run/be-switched@0.0.68';
-        import "https://esm.run/be-persistent@0.0.16";
-        import "https://tabvengers.github.io/spicy-sections/register.js";
-        import "https://esm.run/be-intersectional@0.0.55";
-        import 'https://esm.run/be-observant@0.0.122';
-    </script>
-    <script type="module" src="https://spicy-sections.glitch.me/SpicySections.js"></script>
+
 </body>
 </html>
