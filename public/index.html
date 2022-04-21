@@ -98,7 +98,6 @@
         }
         loadSeq();
     </script>
-    <script type="module" src="https://spicy-sections.glitch.me/SpicySections.js"></script>
     
         
 
@@ -134,10 +133,19 @@
                 "vft": "querySelector|input#file.beDecorated.literate.fileContents.0"
             }
         }'></xtal-editor>
+        <template be-kibitzing='{
+            "selectorSequence": ["xtal-editor", "xtal-side-nav"]
+          }'>
+            <style>
+              aside.side-nav{
+                position: absolute;
+              }
+            </style>
+          </template>
         <script type='module' crossorigin='anonymous'>
             import 'https://esm.run/xtal-editor@0.0.164';
             import 'https://esm.run/be-reformable@0.0.39';
-            
+            import 'https://esm.run/be-kibitzing@0.0.2';
         </script>
     </template>
 
