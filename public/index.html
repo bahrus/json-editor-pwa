@@ -65,9 +65,10 @@
 <body style='margin:3px;overflow:hidden'>
     <h1 style='text-align:center'>JSON Editor</h1>
     <form class='data-selector' be-formidable='{
-        "invalidIf":{
+        "invalidIf":[{
             "noneOf": ["url", "file"]
-        }
+        }],
+        "checkValidityOn": "input"
     }'>
         <oui-panelset>
             <h2>Select URL</h2>
@@ -91,12 +92,8 @@
         import 'https://esm.run/be-persistent@0.0.16';
         import 'https://tabvengers.github.io/spicy-sections/register.js';
         import 'https://esm.run/be-literate@0.0.1';
-        async function loadSeq(){
-            //need form validation to occur first before evaluating be-switched
-            await import('https://esm.run/be-formidable@0.0.1');
-            await import('https://esm.run/be-switched@0.0.68');
-        }
-        loadSeq();
+        import 'https://esm.run/be-formidable@0.0.5';
+        import 'https://esm.run/be-switched@0.0.68'
     </script>
     
         
@@ -106,8 +103,8 @@
     <template be-switched='{
         "if": {
             "observe": "form.data-selector",
-            "on": "input",
-            "vft": "checkValidity|"
+            "on": "formidable::is-valid-changed",
+            "vft": "beDecorated.formidable.isValid"
         }
     }'>
         <style>
