@@ -74,26 +74,23 @@
             <h2>Select URL</h2>
             <div>
                 <label for='url'>URL:</label>
-                <input onClick="this.select();" id='url' name='url' type='url' style='width:calc(100vw - 50px)' be-persistent>
+                <input onClick="this.select();" id='url' name='url' type='url' style='width:calc(100vw - 50px)' be-persistent be-fetching>
             </div>
             <h2>Select File</h2>
             <div>
-                
-                    <label for='file'>File:</label>
-                    <input id='file' name='file' type='file' style='width:calc(100vw - 50px)' be-literate>
-                    <script type='module'>
-                        
-                    </script>
-                
+                <label for='file'>File:</label>
+                <input id='file' name='file' type='file' style='width:calc(100vw - 50px)' be-literate>
             </div>
         </oui-panelset>
     </form>
     <script type=module crossorigin='anonymous'>
         import 'https://esm.run/be-persistent@0.0.16';
         import 'https://tabvengers.github.io/spicy-sections/register.js';
-        import 'https://esm.run/be-literate@0.0.1';
-        import 'https://esm.run/be-formidable@0.0.6';
-        import 'https://esm.run/be-switched@0.0.68'
+        import 'https://esm.run/be-literate@0.0.2';
+        import 'https://esm.run/be-formidable@0.0.7';
+        import 'https://esm.run/be-fetching@0.0.5';
+        import 'https://esm.run/be-switched@0.0.72';
+        import 'https://esm.run/be-observant@0.0.128'
     </script>
     
         
@@ -110,26 +107,21 @@
         <style>
             @import "https://unpkg.com/open-props/buttons.min.css";
         </style>
-        <form be-reformable='{
-            "autoSubmit": true,
-            "url": {
-                "observe": "form",
-                "on": "input",
-                "vft": "querySelector|input.value"
-            },
-            "as": "json"
-        }'
-        target='xtal-editor[-input-obj]'></form>
-        <xtal-editor -input-obj style='height:calc(100vh - 150px)' be-observant='{
-            "value": {
-                "observe": "form.data-selector",
-                "on": "literate::file-contents-changed",
-                "eventListenerOptions": {
-                    "capture": true
+        <xtal-editor -input-obj style='height:calc(100vh - 150px)' be-observant='[
+            {
+                "value": {
+                    "observe": "form.data-selector",
+                    "on": "literate::file-contents-changed",
+                    "capture": true,
+                    "vft": "querySelector|input#file.beDecorated.literate.fileContents.0"
                 },
-                "vft": "querySelector|input#file.beDecorated.literate.fileContents.0"
-            }
-        }'></xtal-editor>
+                "^": {
+                    "observe": "form.data-selector",
+                    "on": "fetching::value-changed",
+                    "capture": true,
+                    "vft": "querySelector|input#url.beDecorated.fetching.value"
+                }
+        }]'></xtal-editor>
         <template be-kibitzing='{
             "selectorSequence": ["xtal-editor", "xtal-side-nav"]
           }'>
@@ -140,8 +132,8 @@
             </style>
           </template>
         <script type='module' crossorigin='anonymous'>
-            import 'https://esm.run/xtal-editor@0.0.164';
-            import 'https://esm.run/be-reformable@0.0.39';
+            import 'https://esm.run/xtal-editor@0.0.175';
+            import 'https://esm.run/be-reformable@0.0.41';
             import 'https://esm.run/be-kibitzing@0.0.2';
         </script>
     </template>
